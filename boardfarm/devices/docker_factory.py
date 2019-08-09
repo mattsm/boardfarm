@@ -48,7 +48,10 @@ class DockerFactory(linux.LinuxDevice):
         self.expect(pexpect.TIMEOUT, timeout=1)
         self.sendline('export PS1="docker_session>"')
         self.expect(self.prompt)
+        self.sendline('echo FOO')
+        self.expect_exact('echo FOO')
         self.expect(self.prompt)
+
         self.set_cli_size(200)
 
         # if these interfaces are getting created let's give them time to show up
